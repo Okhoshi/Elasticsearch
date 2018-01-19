@@ -16,8 +16,8 @@ namespace App.Metrics.Elasticsearch.Sandbox
 {
     public class Startup
     {
-        private static readonly string ElasticSearchIndex = "appmetricssandbox";
-        private static readonly Uri ElasticSearchUri = new Uri("http://127.0.0.1:9200");
+        private static readonly string ElasticSearchIndex = "metrics";
+        private static readonly Uri ElasticSearchUri = new Uri("http://cdifrbsdocker1:9200");
         private static readonly bool HaveAppRunSampleRequests = true;
         private static readonly bool RunSamplesWithClientId = true;
 

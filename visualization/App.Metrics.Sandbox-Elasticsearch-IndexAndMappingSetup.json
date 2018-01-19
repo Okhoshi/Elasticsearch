@@ -1,16 +1,21 @@
-DELETE /appmetricssandbox
+DELETE /metrics-timer
+DELETE /metrics-counter
+DELETE /metrics-apdex
+DELETE /metrics-gauge
+DELETE /metrics-histogram
+DELETE /metrics-meter
 
-    PUT appmetricssandbox
-    {
-    "settings" : {
-        "index" : {
-            "number_of_shards" : 3,
-            "number_of_replicas" : 2
-        }
-    }
-    }
+PUT metrics-timer
+{
+  "settings" : {
+      "index" : {
+          "number_of_shards" : 3,
+          "number_of_replicas" : 2
+      }
+  }
+}
 
-PUT appmetricssandbox/_mapping/timer?update_all_types
+PUT metrics-timer/_mapping/timer
 {
   "properties": {
     "tags.env": { 
@@ -52,7 +57,17 @@ PUT appmetricssandbox/_mapping/timer?update_all_types
   }
 }
 
-PUT appmetricssandbox/_mapping/counter?update_all_types
+PUT metrics-counter
+{
+  "settings" : {
+      "index" : {
+          "number_of_shards" : 3,
+          "number_of_replicas" : 2
+      }
+  }
+}
+
+PUT metrics-counter/_mapping/counter
 {
   "properties": {
      "tags.env": { 
@@ -94,7 +109,17 @@ PUT appmetricssandbox/_mapping/counter?update_all_types
   }
 }
 
-PUT appmetricssandbox/_mapping/apdex?update_all_types
+PUT metrics-apdex
+{
+  "settings" : {
+      "index" : {
+          "number_of_shards" : 3,
+          "number_of_replicas" : 2
+      }
+  }
+}
+
+PUT metrics-apdex/_mapping/apdex
 {
   "properties": {
      "tags.env": { 
@@ -136,7 +161,17 @@ PUT appmetricssandbox/_mapping/apdex?update_all_types
   }
 }
 
-PUT appmetricssandbox/_mapping/gauge?update_all_types
+PUT metrics-gauge
+{
+  "settings" : {
+      "index" : {
+          "number_of_shards" : 3,
+          "number_of_replicas" : 2
+      }
+  }
+}
+
+PUT metrics-gauge/_mapping/gauge
 {
   "properties": {
      "tags.env": { 
@@ -178,7 +213,17 @@ PUT appmetricssandbox/_mapping/gauge?update_all_types
   }
 }
 
-PUT appmetricssandbox/_mapping/histogram?update_all_types
+PUT metrics-histogram
+{
+  "settings" : {
+      "index" : {
+          "number_of_shards" : 3,
+          "number_of_replicas" : 2
+      }
+  }
+}
+
+PUT metrics-histogram/_mapping/histogram
 {
   "properties": {
      "tags.env": { 
@@ -220,7 +265,17 @@ PUT appmetricssandbox/_mapping/histogram?update_all_types
   }
 }
 
-PUT appmetricssandbox/_mapping/meter?update_all_types
+PUT metrics-meter
+{
+  "settings" : {
+      "index" : {
+          "number_of_shards" : 3,
+          "number_of_replicas" : 2
+      }
+  }
+}
+
+PUT metrics-meter/_mapping/meter
 {
   "properties": {
     "tags.env": { 
@@ -260,4 +315,21 @@ PUT appmetricssandbox/_mapping/meter?update_all_types
       "fielddata": true
     }
   }
+}
+
+POST /_aliases
+{
+  "actions": [ { 
+    "add": { 
+      "indices": [
+        "metrics-timer",
+        "metrics-counter",
+        "metrics-apdex",
+        "metrics-gauge",
+        "metrics-histogram",
+        "metrics-meter"
+      ], 
+      "alias": "metrics"
+    } 
+  } ]
 }

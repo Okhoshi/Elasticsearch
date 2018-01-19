@@ -100,3 +100,4 @@ NDependOut/*
 #DotCover
 Session/*
 Session.html
+.vscode/*

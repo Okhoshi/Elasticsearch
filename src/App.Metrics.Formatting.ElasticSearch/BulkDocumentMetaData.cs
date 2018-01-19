@@ -26,7 +26,7 @@ namespace App.Metrics.Formatting.ElasticSearch
 
             MetaData = new DocumentMetaData
             {
-                IndexName = indexName,
+                IndexName = $"{indexName}-{typeName}",
                 TypeName = typeName,
                 DocumentId = Guid.NewGuid().ToString("D")
             };
